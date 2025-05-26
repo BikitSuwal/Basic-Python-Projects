@@ -1,0 +1,25 @@
+def main():
+    plate = input("Plate: ").upper()
+    if is_valid(plate):
+        print("Valid")
+    else:
+        print("Invalid")
+
+def is_valid(plate):
+    if len(plate)<2 and len(plate)>6:
+        return False
+    if not plate[0].isalpha():
+        return False
+    if not plate.isalnum():
+        return False
+    
+    has_num_started = False
+    for char in plate[1:]:
+        if char.isdigit():
+            has_num_started = True
+        elif has_num_started and char.isalpha():
+            return False
+        
+    return True
+
+main()
